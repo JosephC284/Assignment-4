@@ -14,12 +14,13 @@ const retriveInfo = async () => {
   })
 };
 
+
 </script>
 
 <template>
-  <body>
-    <div class="selector">
-      <label for="movies">Information on Movies:</label>
+<body>
+  <div class="selector">
+    <label for="movies">Information on Movies:</label>
       <div>
         <select v-model = "movieId">
           <option value="299534">Avengers Endgame</option>
@@ -35,19 +36,19 @@ const retriveInfo = async () => {
         </select>
       </div>
     <input type="button" value=" Get " @click="retriveInfo">
-    </div>
+  </div>
   <div v-if="movieData" id="output">
-    <iframe :src="`https://www.youtube.com/embed/${trailers.at(0).key}`"></iframe>
-    <img :src="`https://image.tmdb.org/t/p/w500${movieData.data.poster_path}`" alt=""> 
-    <p>{{movieData.data.title}}</p>
-    <p>{{movieData.data.release_date}}</p>
-    <p>{{movieData.data.popularity}}</p>
-    <p>{{movieData.data.id}}</p>
-    <p>{{movieData.data.overview}}</p>
-    <p>{{movieData.data.vote_count}}</p>
-    <p>{{movieData.data.status}}</p>
-    <p>{{movieData.data.revenue}}</p>
-    <p>{{movieData.data.budget}}</p>  
+    <iframe :src="`https://www.youtube.com/embed/${movieData.data.videos.results.filter((trailer) => trailer.type === 'Trailer').at(0).key}`" />   
+    <img :src="`https://image.tmdb.org/t/p/w500${movieData.data.poster_path}`" /> 
+    <p>Movie Title:  {{movieData.data.title}}</p>
+    <p>Release Date: {{movieData.data.release_date}}</p>
+    <p>Popularity: {{movieData.data.popularity}}</p>
+    <p>Movie Id: {{movieData.data.id}}</p>
+    <p>Movie Overview: {{movieData.data.overview}}</p>
+    <p>Movie Vote Count: {{movieData.data.vote_count}}</p>
+    <p>Movie Status: {{movieData.data.status}}</p>
+    <p>Movie Revenue: {{movieData.data.revenue}}</p>
+    <p>Movie Budget: {{movieData.data.budget}}</p>  
   </div>
 </body>
 </template>
